@@ -1,0 +1,13 @@
+@use '../variables/sizes' as *;
+
+.box {
+  padding: $size-3;
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-content-border-radius);
+}
+
+.box__header {
+  padding-bottom: $size-3;
+  margin-bottom: $size-3;
+  border-bottom: 1px dashed var(--p-content-border-color);
+}

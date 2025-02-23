@@ -1,0 +1,13 @@
+export const TEXT_API = 'API';
+export const TEXT_BACKSLASH = '/';
+export const TEXT_CHANGELOG = 'Changelog';
+export const TEXT_COLON = ':';
+export const TEXT_CREATED = 'Created';
+export const TEXT_DOCS = 'Docs';
+export const TEXT_HOME = 'Home';
+export const TEXT_MODIFIED = 'Modified';
+export const TEXT_NOT_FOUND = 'Not Found';
+export const TEXT_RELEASED = 'Released';
+export const TEXT_SITE_TITLE = 'Vue MD Docs';
+export const TEXT_SITE_TITLE_DELIMINATOR = '|';
+export const TEXT_TOOLS = 'Tools';

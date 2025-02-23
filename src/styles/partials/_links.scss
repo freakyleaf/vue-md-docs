@@ -1,0 +1,8 @@
+.main {
+  a:active,
+  a:link,
+  a:visited {
+    color: var(--p-primary-color);
+    text-decoration: none;
+  }
+}

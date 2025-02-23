@@ -1,0 +1,39 @@
+@use '../variables/sizes' as *;
+
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  td,
+  th {
+    padding-top: $size-2;
+    padding-bottom: $size-2;
+    border-top: 1px dashed var(--p-content-border-color);
+    border-bottom: 1px dashed var(--p-content-border-color);
+  }
+
+  td {
+    width: 100%; // Make as wide as possible
+  }
+
+  th {
+    text-align: left;
+    padding-right: $size-2;
+  }
+
+  tr:first-child {
+    td,
+    th {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+
+  tr:last-child {
+    td,
+    th {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+}

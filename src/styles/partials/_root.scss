@@ -1,0 +1,16 @@
+@use '../variables/sizes' as *;
+
+body {
+  overflow-y: scroll;
+  font-family: inter, sans-serif;
+  margin: 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 75rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $size-3;
+  padding-right: $size-3;
+}

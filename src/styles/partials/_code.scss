@@ -1,0 +1,12 @@
+@use '../variables/sizes' as *;
+
+code {
+  pre & {
+    display: block;
+    width: 100%;
+    padding: $size-3;
+    font-size: 1.2em;
+    border: 1px solid var(--p-content-border-color);
+    border-radius: var(--p-content-border-radius);
+  }
+}
