@@ -1,0 +1,23 @@
+@use '../variables/breakpoints' as *;
+@use '../variables/sizes' as *;
+
+.two-up__sidebar {
+  margin-bottom: $size-3;
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .two-up {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: $size-3;
+  }
+
+  .two-up__sidebar {
+    flex: 0 0 25%;
+    margin-bottom: 0;
+  }
+
+  .two-up__content {
+    flex: 0 0 75%;
+  }
+}

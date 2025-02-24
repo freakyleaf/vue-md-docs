@@ -8,6 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Docs100ApiReference: typeof import('./src/content/docs/1.0.0/api-reference.md')['default']
+    Docs100GettingStarted: typeof import('./src/content/docs/1.0.0/getting-started.md')['default']
+    Docs100ReleaseNotes: typeof import('./src/content/docs/1.0.0/release-notes.md')['default']
+    Docs110ApiReference: typeof import('./src/content/docs/1.1.0/api-reference.md')['default']
+    Docs110GettingStarted: typeof import('./src/content/docs/1.1.0/getting-started.md')['default']
+    Docs110ReleaseNotes: typeof import('./src/content/docs/1.1.0/release-notes.md')['default']
     DxPageBreadcrumbs: typeof import('./src/components/DxPageBreadcrumbs.vue')['default']
     DxPageNavigation: typeof import('./src/components/DxPageNavigation.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, markRaw, onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { usePageTitle } from '@/composables/usePageTitle';
@@ -19,22 +19,32 @@ const pageTitlePretty = docs
   .find((doc) => doc.version === version)
   ?.paths.find((path) => path.url === file)?.name as string;
 
-usePageTitle(`${pageTitlePretty}: ${version}`);
+usePageTitle(`${version} ${pageTitlePretty}`);
 
 const currentAttributes = ref<null | IMarkdownAttributes>(null);
-const currentHtml = ref(null);
+const currentComponent = ref(null);
 
-onBeforeMount(() => {
-  const articleModule = () =>
-    import(`@/${PATH_CONTENT}/${PATH_DOCS}/${version}/${file}.md`);
-  articleModule()
-    .then(({ attributes, html }) => {
-      currentAttributes.value = attributes;
-      currentHtml.value = html;
-    })
-    .catch(() => {
-      router.replace(`/${PATH_NOT_FOUND}`);
-    });
+onBeforeMount(async () => {
+  try {
+    const {
+      dateCreated,
+      dateModified,
+      default: component,
+      title,
+    } = await import(`@/${PATH_CONTENT}/${PATH_DOCS}/${version}/${file}.md`);
+    currentComponent.value = markRaw(component);
+    currentAttributes.value = {
+      dateCreated,
+      dateModified,
+      title,
+    };
+    const foo = await import(
+      `@/${PATH_CONTENT}/${PATH_DOCS}/${version}/${file}.md`
+    );
+    console.log(foo);
+  } catch {
+    router.replace(`/${PATH_NOT_FOUND}`);
+  }
 });
 
 const showDateModified = computed(() => {
@@ -52,7 +62,7 @@ const showDateReleased = computed(() => {
 
 <template>
   <template v-if="currentAttributes">
-    <h1 class="mb-3">{{ currentAttributes.title }}</h1>
+    <h1 class="mb-3">{{ version }} {{ currentAttributes.title }}</h1>
     <div class="box mb-3">
       <div class="box__content">
         <table class="custom-table">
@@ -80,5 +90,25 @@ const showDateReleased = computed(() => {
       </div>
     </div>
   </template>
-  <div v-html="currentHtml" />
+  <component
+    v-if="currentComponent"
+    :is="currentComponent"
+  />
+  <!-- <div class="two-up">
+    <div class="two-up__sidebar">
+      <div class="box">
+        <div class="box__header">
+          <h2>Table of Contents</h2>
+        </div>
+        <div class="box__content">
+        </div>
+      </div>
+    </div>
+    <div class="two-up__main">
+      <component
+        v-if="currentComponent"
+        :is="currentComponent"
+      />
+    </div>
+  </div> -->
 </template>
